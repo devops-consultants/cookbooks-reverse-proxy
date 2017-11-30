@@ -1,0 +1,43 @@
+---
+driver:
+  name: dokken
+  chef_version: latest
+  privileged: true
+
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+  http_proxy: <%= ENV['http_proxy'] %>
+  https_proxy: <%= ENV['http_proxy'] %>
+
+verifier:
+  name: inspec
+  root_path: '/opt/verifier'
+
+platforms:
+  - name: centos-7
+    driver:
+      image: centos:7
+      platform: rhel
+      pid_one_command: /usr/lib/systemd/systemd
+      intermediate_instructions:
+        - RUN yum -y install lsof which systemd-sysv initscripts wget net-tools sudo
+      # privileged: true
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup:ro # required by systemd
+  # - name: ubuntu-16.04
+  #   driver:
+  #     image: dokken/ubuntu-16.04
+  #     pid_one_command: /bin/systemd
+
+suites:
+  - name: default
+    # data_bags_path: "test/fixtures/data_bags" 
+    run_list:
+      - recipe[reverse_proxy::default]
+      - recipe[reverse_proxy::horizon]
+    attributes: {
+    }
+
