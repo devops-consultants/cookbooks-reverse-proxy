@@ -42,9 +42,9 @@ end
   
 haproxy_config_defaults 'defaults' do
     mode 'http'
-    timeout connect: '5000ms',
-            client: '5000ms',
-            server: '5000ms'
+    timeout connect: '15000ms',
+            client: '15000ms',
+            server: '15000ms'
     haproxy_retries 5
 end
   
