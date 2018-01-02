@@ -80,3 +80,9 @@ end
 haproxy_backend 'abuser' do
     extra_options 'errorfile' => '403 /etc/haproxy/errors/403.http'
 end
+
+include_recipe 'selinux_policy::install'
+
+selinux_policy_boolean 'haproxy_connect_any' do
+    value true
+end
