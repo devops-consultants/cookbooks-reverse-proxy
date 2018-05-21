@@ -38,6 +38,7 @@ suites:
     run_list:
       - recipe[reverse_proxy::default]
       - recipe[reverse_proxy::horizon]
+      - recipe[reverse_proxy::gateone]
     attributes: {
     }
 
