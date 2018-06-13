@@ -1,0 +1,33 @@
+# Basicly taken from:
+# https://github.com/docker-library/drupal/issues/3#issuecomment-153775540
+#
+# Volume containers are the way to go.
+
+version: '2'
+services:
+  drupal:
+    image: drupal:8.5-fpm-alpine
+    links:
+      - "db:mysql"
+    ports:
+      - "8082:80"
+    volumes:
+      - storage-drupal:/var/www/html/modules
+      - storage-drupal:/var/www/html/profiles
+      - storage-drupal:/var/www/html/themes
+      - storage-drupal:/var/www/html/sites
+
+  db:
+    image: mysql
+    volumes:
+      - storage-mysql:/var/lib/mysql
+    environment:
+      - MYSQL_USER=db_user
+      - MYSQL_PASSWORD=db_pass
+      - MYSQL_DATABASE=drupal8
+        - MYSQL_ROOT_PASSWORD=db_root_pass
+volumes:
+  storage-drupal:
+    driver: local
+  storage-mysql:
+    driver: local

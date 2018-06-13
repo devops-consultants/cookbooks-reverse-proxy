@@ -4,7 +4,7 @@ maintainer_email 'rob.coward@devops-consultants.co.uk'
 license 'Apache-2.0'
 description 'Installs/Configures reverse_proxy'
 long_description 'Installs/Configures reverse_proxy'
-version '0.0.6'
+version '0.0.7'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 supports 'redhat'
 
@@ -15,3 +15,4 @@ depends 'haproxy'
 depends 'docker'
 depends 'ssl_certificate'
 depends 'selinux_policy'
+depends 'docker_compose', '~> 0.0'

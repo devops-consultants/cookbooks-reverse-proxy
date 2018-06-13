@@ -39,6 +39,8 @@ suites:
       - recipe[reverse_proxy::default]
       - recipe[reverse_proxy::horizon]
       - recipe[reverse_proxy::gateone]
+      - recipe[reverse_proxy::drupal]
+      - recipe[reverse_proxy::guacamole]
     attributes: {
     }
 
