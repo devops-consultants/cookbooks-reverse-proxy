@@ -17,6 +17,19 @@ cookbook_file '/etc/docker-compose_drupal.yml' do
   notifies :up, 'docker_compose_application[drupal]', :delayed
 end
 
+docker_volume 'drupal-sites' do
+  action :create
+  notifies :run, 'docker_container[drupal_seed_sites]', :immediately
+end
+
+docker_container 'drupal_seed_sites' do
+  repo 'drupal'
+  tag '8.5'
+  command "cp -aRT /var/www/html/sites /temporary/sites"
+  volumes 'drupal-sites:/temporary/sites'
+  action :nothing
+end
+
 # Provision Compose application
 docker_compose_application 'drupal' do
   action :up
