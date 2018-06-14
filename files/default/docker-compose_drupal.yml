@@ -6,16 +6,20 @@
 version: '2'
 services:
   drupal:
-    image: drupal:8.5-fpm-alpine
+    image: drupal:8.5
     links:
       - "db:mysql"
     ports:
       - "8082:80"
     volumes:
-      - storage-drupal:/var/www/html/modules
-      - storage-drupal:/var/www/html/profiles
-      - storage-drupal:/var/www/html/themes
-      - storage-drupal:/var/www/html/sites
+      - /var/www/html/modules
+      - /var/www/html/profiles
+      - /var/www/html/themes
+      - /var/www/html/sites
+#      - storage-drupal:/var/www/html/modules
+#      - storage-drupal:/var/www/html/profiles
+#      - storage-drupal:/var/www/html/themes
+#      - storage-drupal:/var/www/html/sites
 
   db:
     image: mysql
@@ -25,9 +29,9 @@ services:
       - MYSQL_USER=db_user
       - MYSQL_PASSWORD=db_pass
       - MYSQL_DATABASE=drupal8
-        - MYSQL_ROOT_PASSWORD=db_root_pass
+      - MYSQL_ROOT_PASSWORD=db_root_pass
 volumes:
-  storage-drupal:
-    driver: local
+#  storage-drupal:
+#    driver: local
   storage-mysql:
     driver: local
