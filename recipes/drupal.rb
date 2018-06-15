@@ -12,7 +12,7 @@ directory '/etc/drupal' do
   owner 'root'
   group 'root'
   mode '0755'
-  recursive True
+  recursive 'True'
   action :create
 end
 
