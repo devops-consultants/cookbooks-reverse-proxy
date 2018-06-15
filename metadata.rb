@@ -4,7 +4,7 @@ maintainer_email 'rob.coward@devops-consultants.co.uk'
 license 'Apache-2.0'
 description 'Installs/Configures reverse_proxy'
 long_description 'Installs/Configures reverse_proxy'
-version '0.0.12'
+version '0.0.13'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 supports 'redhat'
 
