@@ -25,6 +25,13 @@ cookbook_file '/etc/drupal/docker-compose.yml' do
   notifies :up, 'docker_compose_application[drupal]', :delayed
 end
 
+cookbook_file '/etc/drupal/upload.ini' do
+  source 'upload.ini'
+  owner 'root'
+  group 'root'
+  mode 0644
+end
+
 docker_volume 'drupal_sites' do
   action :create
   notifies :run, 'docker_container[drupal_seed_sites]', :immediately

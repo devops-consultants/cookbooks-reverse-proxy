@@ -13,14 +13,11 @@ services:
     ports:
       - "8082:80"
     volumes:
-      - /var/www/html/modules
-      - /var/www/html/profiles
-      - /var/www/html/themes
-      - /var/www/html/sites
       - modules:/var/www/html/modules
       - profiles:/var/www/html/profiles
       - themes:/var/www/html/themes
       - sites:/var/www/html/sites
+      - /etc/drupal/upload.ini:/usr/local/etc/php/conf.d/uploads.ini
 
   db:
     image: mysql
