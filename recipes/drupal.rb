@@ -9,7 +9,7 @@ node.default['proxy']['backends'] << 'drupal if drupal_host'
 include_recipe 'docker_compose::installation'
 
 # Provision Compose file
-cookbook_file '/etc/docker-compose_drupal.yml' do
+cookbook_file '/etc/drupal/docker-compose.yml' do
   source 'docker-compose_drupal.yml'
   owner 'root'
   group 'root'
@@ -33,5 +33,5 @@ end
 # Provision Compose application
 docker_compose_application 'drupal' do
   action :up
-  compose_files [ '/etc/docker-compose_drupal.yml' ]
+  compose_files [ '/etc/drupal/docker-compose.yml' ]
 end
