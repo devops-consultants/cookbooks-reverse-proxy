@@ -17,10 +17,10 @@ services:
       - /var/www/html/profiles
       - /var/www/html/themes
       - /var/www/html/sites
-      - drupal-modules:/var/www/html/modules
-      - drupal-profiles:/var/www/html/profiles
-      - drupal-themes:/var/www/html/themes
-      - drupal-sites:/var/www/html/sites
+      - modules:/var/www/html/modules
+      - profiles:/var/www/html/profiles
+      - themes:/var/www/html/themes
+      - sites:/var/www/html/sites
 
   db:
     image: mysql
@@ -35,11 +35,11 @@ services:
 volumes:
   storage-mysql:
     driver: local
-  drupal-modules:
+  modules:
     driver: local
-  drupal-profiles:
+  profiles:
     driver: local
-  drupal-themes:
+  themes:
     driver: local
-  drupal-sites:
+  sites:
     driver: local
