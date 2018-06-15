@@ -8,6 +8,14 @@ node.default['proxy']['backends'] << 'drupal if drupal_host'
 
 include_recipe 'docker_compose::installation'
 
+directory '/etc/drupal' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  recursive True
+  action :create
+end
+
 # Provision Compose file
 cookbook_file '/etc/drupal/docker-compose.yml' do
   source 'docker-compose_drupal.yml'
